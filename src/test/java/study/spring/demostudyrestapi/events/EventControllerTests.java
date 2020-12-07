@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import study.spring.demostudyrestapi.common.TestDescription;
 
 import java.time.LocalDateTime;
 
@@ -49,6 +50,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @TestDescription("정상적으로 이베트를 생성하는 테스트")
     public void createEvent() throws Exception {
 
         // 적어도 3개의 테스트데이터를 이용하여 테스트하여야 TDD스러움
@@ -81,6 +83,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @TestDescription("입력 받을 수 없는 값을 사용한 경우에 에러가 발생하는 테스트")
     public void createEvent_Bad_Request() throws Exception {
 
         Event event = Event.builder()
@@ -109,6 +112,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @TestDescription("입력 값이 비어있는 경우에 에러가 발생하는 테스트")
     public void createEvent_Bad_Request_Empty_Input() throws Exception {
         EventDto eventDto = EventDto.builder().build();
 
@@ -120,6 +124,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @TestDescription("입력 값이 잘못된 경우에 에러가 발생하는 테스트")
     public void createEvent_Bad_Request_Wrong_Input() throws Exception {
         EventDto eventDto = EventDto.builder()
                 .name("Spring")
