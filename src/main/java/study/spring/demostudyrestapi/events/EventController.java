@@ -21,9 +21,7 @@ import static org.springframework.hateoas.server.mvc.ControllerLinkBuilder.metho
 public class EventController {
 
     private final EventRepository eventRepository;
-
     private final ModelMapper modelMapper;
-
     private final EventValidator eventValidator;
 
     public EventController(EventRepository eventRepository, ModelMapper modelMapper, EventValidator eventValidator) {
@@ -35,12 +33,12 @@ public class EventController {
     @PostMapping
     public ResponseEntity createEvent(@RequestBody @Valid EventDto eventDto, Errors errors){
         if(errors.hasErrors()){
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(errors);
         }
 
         eventValidator.validate(eventDto, errors);
         if(errors.hasErrors()){
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(errors);
         }
 
         Event event = modelMapper.map(eventDto, Event.class);
