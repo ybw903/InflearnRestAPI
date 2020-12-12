@@ -18,7 +18,7 @@ import static org.springframework.hateoas.server.mvc.ControllerLinkBuilder.linkT
 import static org.springframework.hateoas.server.mvc.ControllerLinkBuilder.methodOn;
 
 @Controller
-@RequestMapping(value = "/api/events", produces = MediaTypes.HAL_JSON_VALUE)
+@RequestMapping(value = "/api/events", produces = MediaTypes.HAL_JSON_VALUE+";charset=UTF-8")
 public class EventController {
 
     private final EventRepository eventRepository;
